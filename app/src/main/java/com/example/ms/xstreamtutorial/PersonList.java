@@ -11,7 +11,7 @@ class PersonList {
         personList = new Person[count];
         for (i = 0; i < count; i++) {
             personList[i] = new Person("John", "Dow_" + i, null, null);
-            System.out.println("\nPerson: John Dow" + i);
+            System.out.println("\nPerson: " + personList[i].getFirstname() + ", " + personList[i].getLastname());
         }
         System.out.println("\n\n");
     }
@@ -41,5 +41,22 @@ class PersonList {
         xstream.alias("PersonList", PersonList.class);
         personList = (Person[]) xstream.fromXML(xml);
         System.out.println("\nXML:\n" + xml);
+    }
+
+    Person[] searchPerson(String searchFor) {
+        int cnt = 0;
+        Person[] searchResult = new Person[1000]; // shrink later
+
+        for ( int i=0; i<personList.length; i++) {
+            if (       (personList[i].getFirstname() != null && personList[i].getFirstname().contains(searchFor))
+                    || (personList[i].getLastname() != null && personList[i].getLastname().contains(searchFor))
+                    || (personList[i].getPhone() != null && personList[i].getPhone().contains(searchFor))
+                    || (personList[i].getEmail() != null && personList[i].getEmail().contains(searchFor))) {
+                searchResult[cnt++] = personList[i];
+            }
+        }
+        Person[] result = new Person[cnt];
+        System.arraycopy(searchResult, 0, result, 0, cnt);
+        return result;
     }
 }

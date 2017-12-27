@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         PersonList pl1 = new PersonList(exampleXML);
         PersonList pl2 = new PersonList(10);
 
+        Person[] result = pl1.searchPerson("Schaub");
+        for (int i = 0; i < result.length; i++)
+            System.out.println("\nPL1 (Schaub): " + result[i].getFirstname() + ", " + result[i].getLastname() + ", " + result[i].getEmail() + ", " + result[i].getPhone());
+
+        result = pl2.searchPerson("Dow_2");
+        for (int i = 0; i < result.length; i++)
+            System.out.println("\nPL2 (Dow2)  : " + result[i].getFirstname() + ", " + result[i].getLastname() + ", " + result[i].getEmail() + ", " + result[i].getPhone());
+
         FileOutputStream outputStream;
         try {
             outputStream = this.openFileOutput("PersonList1", Context.MODE_PRIVATE);
@@ -83,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             "  <Person>\n" +
             "    <firstname>Noah</firstname>\n" +
             "    <lastname>Schaub</lastname>\n" +
-            "    <phone>+41 76 572 5240</phone>\n" +
+            "    <phone>+41 76 510 2008</phone>\n" +
             "  </Person>\n" +
             "</Person-array>\n";
 }
