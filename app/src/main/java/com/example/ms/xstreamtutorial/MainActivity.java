@@ -8,6 +8,7 @@ import com.thoughtworks.xstream.XStream;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         String [] files = this.getFilesDir().list();
         for (int i = 0; i < files.length; i++)
             System.out.println("\nFile: " + files[i]);
+
+        // File[] files2delete = this.getFilesDir().listFiles();
+        // for (int i = 0; i < files2delete.length; i++)
+        //     files2delete[i].delete();
 
         PersonList pl1 = new PersonList(exampleXML);
         PersonList pl2 = new PersonList(10);
